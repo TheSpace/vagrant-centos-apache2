@@ -28,11 +28,10 @@
 
     UseCanonicalName Off
 
-    SetEnv APPLICATION_ENV developer_<%= node["env"]["name"] %>
+    SetEnv APPLICATION_ENV thespace_<%= node["env"]["name"] %>
 
   <IfModule php5_module>
-	  
-	php_value newrelic.appname "<%= node["env"]["name"] %>.thespace.org"
-
+		php_value newrelic.appname "<%= node["env"]["name"] %>.thespace.org"
   </IfModule>
+
 </VirtualHost>
