@@ -1,0 +1,38 @@
+<VirtualHost *:80>
+
+    ServerAdmin sysadmin@aerian.com
+    ServerName thespace.dev.aerian.com
+    ServerAlias thespace.local
+
+    AliasMatch ^/v(\d+)\.(\d+)(\.(\d+))*/(.*) /var/www/thespace-web/httpdocs/$5
+
+    DocumentRoot /var/www/thespace-web/httpdocs
+
+    <Directory />
+        Options FollowSymLinks
+        AllowOverride All
+    </Directory>
+
+    <Directory /var/www/thespace-web>
+        Options -Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    </Directory>
+
+    ErrorLog /var/log/thespace/apache_error.log
+
+    LogLevel warn
+
+    CustomLog /var/log/thespace/apache_access.log combined
+
+    UseCanonicalName Off
+
+    SetEnv APPLICATION_ENV developer_<%= node["env"]["name"] %>
+
+  <IfModule php5_module>
+	  
+	php_value newrelic.appname "<%= node["env"]["name"] %>.thespace.org"
+
+  </IfModule>
+</VirtualHost>
