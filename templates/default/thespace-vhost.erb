@@ -3,6 +3,7 @@
     ServerAdmin sysadmin@aerian.com
     ServerName thespace.dev.aerian.com
     ServerAlias thespace.local
+    EnableSendfile Off
 
     AliasMatch ^/v(\d+)\.(\d+)(\.(\d+))*/(.*) /var/www/thespace-web/httpdocs/$5
 
