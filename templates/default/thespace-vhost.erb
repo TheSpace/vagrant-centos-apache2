@@ -1,5 +1,13 @@
 <VirtualHost *:80>
 
+    ServerAdmin sysadmin@aerian.com
+    ServerName thespace.dev.aerian.com
+    ServerAlias thespace.local
+
+    AliasMatch ^/v(\d+)\.(\d+)(\.(\d+))*/(.*) /var/www/thespace-web/httpdocs/$5
+
+    DocumentRoot /var/www/thespace-web/httpdocs
+
     <Directory />
         Options FollowSymLinks
         AllowOverride All
@@ -25,5 +33,7 @@
   <IfModule php5_module>
 		php_value newrelic.appname "<%= node["env"]["name"] %>.thespace.org"
   </IfModule>
+
+      EnableSendfile Off
 
 </VirtualHost>
